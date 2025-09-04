@@ -42,7 +42,7 @@ def circuits():
     iteration_times=math.floor(math.pi/4*math.sqrt(pow(2,n)))
     for iteration in range(iteration_times):
         phase_oracle(qc, n, indices_to_mark)
-        qc+=diffuser(n)
+        qc.compose(diffuser(n), inplace=True)
 
     qc.measure_all()
 

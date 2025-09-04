@@ -1,0 +1,12 @@
+suite: benchmark.suites.my_circuit_suite
+backend: qiskit.test.mock.backends.brisbane:FakeBrisbane
+times: 10
+pass managers:
+  - qiskit.transpiler.preset_passmanagers:level_3_pass_manager
+fields:
+  - routing_method
+  - n_qubits
+  - depth
+  - level3_cxs
+  - level3_depth
+  - level3_time

@@ -13,8 +13,8 @@
 # the original file is from https://github.com/1ucian0/rpo.git and has been modified by Peiyi Li
 
 from qiskit.transpiler import PassManagerConfig
-from qiskit.transpiler.coupling import CouplingMap
-from qiskit.providers.aer.noise import NoiseModel
+# from qiskit.transpiler.coupling import CouplingMap
+# from qiskit.providers.aer.noise import NoiseModel
 from qiskit import execute, Aer
 
 class Result:
@@ -97,7 +97,8 @@ class Result:
         cx_results = []
         for cx_result in self.pms_results['level_3_pass_manager']['transpiled']:
             try:
-                cx_count = cx_result.count_ops()['cx']
+                ops = cx_result.count_ops()
+                cx_count = ops.get('cx', 0) + ops.get('ecr', 0)
             except:
                 cx_count = 0
             cx_results.append(cx_count)
